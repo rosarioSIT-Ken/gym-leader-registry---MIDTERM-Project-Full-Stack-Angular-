@@ -15,10 +15,10 @@ export class LeaderCard {
   // true when the leader's image file is missing
   imageFailed = signal(false);
 
-  // image path from the name, e.g. "Brock" -> /images/leaders/brock.jpg
+  // image path from the name, e.g. "Brock" -> /images/brock.jpg
   imagePath = computed(() => {
     const fileName = this.leader().name.trim().toLowerCase().replace(/\s+/g, '-');
-    return `/images/leaders/${fileName}.jpg`;
+    return `/images/${fileName}.jpg`;
   });
 
   // first letter shown when there is no image
