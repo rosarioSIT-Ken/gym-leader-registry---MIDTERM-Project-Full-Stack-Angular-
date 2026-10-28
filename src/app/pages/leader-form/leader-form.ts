@@ -34,7 +34,7 @@ export class LeaderForm implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
-    // edit mode: load the leader and fill the form
+  
     if (id) {
       this.leaderId.set(id);
       this.isLoading.set(true);

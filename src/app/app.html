@@ -1,3 +1,6 @@
+@if (showIntro()) {
+  <app-intro (finished)="onIntroDone()" />
+}
 <app-navbar />
 
 <main>

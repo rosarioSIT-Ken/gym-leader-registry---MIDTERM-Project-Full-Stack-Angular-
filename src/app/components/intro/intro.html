@@ -1,0 +1,25 @@
+@if (stage() === 1) {
+  <section class="stage welcome">
+    <p class="kicker">Pokemon League Office</p>
+    <h1 class="big">Welcome</h1>
+    <span class="line"></span>
+    <p class="hint">Click anywhere to continue</p>
+  </section>
+} @else {
+  <section class="stage registry">
+    <div class="bars">
+      <span class="bar kanto"></span>
+      <span class="bar johto"></span>
+      <span class="bar hoenn"></span>
+    </div>
+
+    <p class="small">This is the</p>
+    <h1 class="title">GYM LEADER<br />REGISTRY</h1>
+    <p class="regions">
+      <span class="kanto-text">Kanto</span> &middot;
+      <span class="johto-text">Johto</span> &middot;
+      <span class="hoenn-text">Hoenn</span>
+    </p>
+    <p class="hint dark">Click anywhere to enter</p>
+  </section>
+}

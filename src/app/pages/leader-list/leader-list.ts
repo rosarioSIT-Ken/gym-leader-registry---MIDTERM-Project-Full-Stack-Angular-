@@ -17,7 +17,7 @@ export class LeaderList implements OnInit {
   selectedRegion = signal('All');
   leaders = this.leaderService.leaders;
 
-  // list shown on screen, based on the selected region
+
   filteredLeaders = computed(() => {
     const region = this.selectedRegion();
     if (region === 'All') {
@@ -31,7 +31,7 @@ export class LeaderList implements OnInit {
   atStart = signal(true);
   atEnd = signal(true);
 
-  // re-check the arrows whenever the list changes
+
   private syncArrows = effect(() => {
     this.filteredLeaders();
     setTimeout(() => this.updateArrows());

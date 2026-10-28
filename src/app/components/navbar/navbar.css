@@ -5,7 +5,7 @@
   display: block;
 }
 
-/* top notice bar */
+
 .notice {
   display: flex;
   justify-content: center;
@@ -23,7 +23,7 @@
   color: var(--muted);
 }
 
-/* main bar */
+
 .bar {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -90,7 +90,7 @@
   border-color: #fff;
 }
 
-/* phone */
+
 @media (max-width: 700px) {
   .bar {
     grid-template-columns: 1fr auto;

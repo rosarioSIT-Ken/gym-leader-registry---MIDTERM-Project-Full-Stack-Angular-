@@ -1,0 +1,240 @@
+
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: block;
+  background: #000;
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+
+:host(.leaving) {
+  opacity: 0;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+
+.welcome {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 70%);
+  color: #fff;
+}
+
+.kicker {
+  margin: 0 0 18px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: fade-up 0.8s ease 0.2s forwards;
+}
+
+.big {
+  margin: 0;
+  font-size: clamp(3.5rem, 13vw, 9rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  opacity: 0;
+  animation: focus-in 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s forwards;
+}
+
+.line {
+  display: block;
+  width: 0;
+  height: 1px;
+  margin: 28px 0;
+  background: rgba(255, 255, 255, 0.5);
+  animation: grow 1s ease 1.3s forwards;
+}
+
+.hint {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: pulse 2s ease-in-out 2s infinite;
+}
+
+
+.registry {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 70%);
+  color: #fff;
+  animation: circle-reveal 1s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+.bars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+.bar {
+  flex: 1;
+  height: 8px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: bar-in 0.7s ease forwards;
+}
+
+.bar.kanto {
+  background: var(--kanto);
+  animation-delay: 0.6s;
+}
+
+.bar.johto {
+  background: var(--johto);
+  animation-delay: 0.75s;
+}
+
+.bar.hoenn {
+  background: var(--hoenn);
+  animation-delay: 0.9s;
+}
+
+.small {
+  margin: 0 0 14px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: fade-up 0.7s ease 0.7s forwards;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.02;
+  opacity: 0;
+  animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.85s forwards;
+}
+
+.regions {
+  margin: 24px 0 40px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #4a4a4a;
+  opacity: 0;
+  animation: fade-up 0.7s ease 1.3s forwards;
+}
+
+.kanto-text {
+  color: var(--kanto);
+}
+
+.johto-text {
+  color: var(--johto);
+}
+
+.hoenn-text {
+  color: var(--hoenn);
+}
+
+.hint.dark {
+  color: var(--muted);
+  animation-delay: 1.8s;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes focus-in {
+  from {
+    opacity: 0;
+    letter-spacing: 0.4em;
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    letter-spacing: -0.03em;
+    filter: blur(0);
+  }
+}
+
+@keyframes grow {
+  to {
+    width: min(220px, 50vw);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes circle-reveal {
+  from {
+    clip-path: circle(0% at 50% 50%);
+  }
+  to {
+    clip-path: circle(150% at 50% 50%);
+  }
+}
+
+@keyframes bar-in {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  :host,
+  .stage,
+  .stage * {
+    animation-duration: 0.01s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.2s !important;
+  }
+}
