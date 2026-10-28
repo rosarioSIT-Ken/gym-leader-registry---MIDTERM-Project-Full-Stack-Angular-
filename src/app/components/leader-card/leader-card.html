@@ -5,7 +5,7 @@
   [class.hoenn]="leader().region === 'Hoenn'"
 >
   <div class="art">
-    @if (imageFailed()) {
+    @if (imageStep() === 'letter') {
       <div class="placeholder">
         <span class="ph-letter">{{ initial() }}</span>
         <span class="ph-note">{{ leader().specialty }} type</span>
