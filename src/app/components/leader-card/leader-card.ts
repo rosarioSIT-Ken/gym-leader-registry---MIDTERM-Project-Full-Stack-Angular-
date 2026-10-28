@@ -25,13 +25,11 @@ export class LeaderCard {
   });
 
   // random picture picked from the leader's _id, so it stays the same after a refresh
+   // picture picked from the end of the leader's _id, so it stays the same after a refresh
   randomImage = computed(() => {
-    const id = this.leader()._id ?? this.leader().name;
-    let hash = 0;
-    for (const char of id) {
-      hash = (hash * 31 + char.charCodeAt(0)) % 100000;
-    }
-    const number = (hash % RANDOM_IMAGE_COUNT) + 1;
+    const id = this.leader()._id ?? '';
+    const value = parseInt(id.slice(-6), 16) || 0;
+    const number = (value % RANDOM_IMAGE_COUNT) + 1;
     return `/images/leaders/random/${number}.jpg`;
   });
 
