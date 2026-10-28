@@ -1,27 +1,37 @@
 <article
-  class="card"
+  class="panel"
   [class.kanto]="leader().region === 'Kanto'"
   [class.johto]="leader().region === 'Johto'"
   [class.hoenn]="leader().region === 'Hoenn'"
 >
-  <div class="card-header">
-    <h2>{{ leader().name }}</h2>
-    <span class="region-tag">{{ leader().region }}</span>
+  <div class="art">
+    @if (imageFailed()) {
+      <div class="placeholder">
+        <span class="ph-letter">{{ initial() }}</span>
+        <span class="ph-note">{{ leader().specialty }} type</span>
+      </div>
+    } @else {
+      <img [src]="imagePath()" [alt]="leader().name" (error)="onImageError()" />
+    }
   </div>
 
-  <ul class="details">
-    <li><strong>Town:</strong> {{ leader().town }}</li>
-    <li><strong>Badge:</strong> {{ leader().badge }}</li>
-    <li><strong>Specialty:</strong> {{ leader().specialty }}</li>
-    <li><strong>Ace Level:</strong> {{ leader().aceLevel }}</li>
-  </ul>
+  <span class="tag">{{ leader().region }}</span>
+  <span class="level">Ace Lv. {{ leader().aceLevel }}</span>
 
-  @if (leader().motto) {
-    <p class="motto">"{{ leader().motto }}"</p>
-  }
+  <div class="overlay">
+    <div class="meta">
+      <h3>{{ leader().name }}</h3>
+      <p class="sub">{{ leader().specialty }} &middot; {{ leader().town }}</p>
+      <p class="badge">{{ leader().badge }}</p>
 
-  <div class="card-actions">
-    <button type="button" class="edit-btn" (click)="onEdit()">Edit</button>
-    <button type="button" class="remove-btn" (click)="onRemove()">Remove</button>
+      @if (leader().motto) {
+        <p class="motto">"{{ leader().motto }}"</p>
+      }
+    </div>
+
+    <div class="actions">
+      <button type="button" class="edit-btn" (click)="onEdit()">Edit</button>
+      <button type="button" class="remove-btn" (click)="onRemove()">Remove</button>
+    </div>
   </div>
 </article>

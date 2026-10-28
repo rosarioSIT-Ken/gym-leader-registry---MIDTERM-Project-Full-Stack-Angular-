@@ -1,8 +1,11 @@
 <section class="page">
-  <div class="page-header">
-    <h1>Gym Leaders</h1>
-    <a routerLink="/leaders/new" class="add-btn">+ Add Leader</a>
-  </div>
+  <header class="head">
+    <div>
+      <p class="kicker">The Registry</p>
+      <h1>Gym Leaders</h1>
+    </div>
+    <span class="count">{{ filteredLeaders().length }} leader(s)</span>
+  </header>
 
   <div class="filters">
     @for (region of regions; track region) {
@@ -11,12 +14,23 @@
       </button>
     }
   </div>
+</section>
 
-  <div class="grid">
+<div class="viewport">
+  <button type="button" class="arrow left" [disabled]="atStart()" (click)="scroll(-1)" aria-label="Previous">&#8592;</button>
+
+  <div class="track" #track (scroll)="updateArrows()">
     @for (leader of filteredLeaders(); track leader._id) {
-      <app-leader-card [leader]="leader" (edit)="onEdit($event)" (remove)="onRemove($event)" />
+      <div class="slide">
+        <app-leader-card [leader]="leader" (edit)="onEdit($event)" (remove)="onRemove($event)" />
+      </div>
     } @empty {
-      <p class="empty">No Gym Leaders registered yet.</p>
+      <div class="empty">
+        <p>No Gym Leaders registered yet.</p>
+        <a routerLink="/leaders/new" class="ghost">+ Add Leader</a>
+      </div>
     }
   </div>
-</section>
+
+  <button type="button" class="arrow right" [disabled]="atEnd()" (click)="scroll(1)" aria-label="Next">&#8594;</button>
+</div>

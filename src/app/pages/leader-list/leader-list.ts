@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, computed, effect, inject, signal, viewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { GymLeaderService } from '../../services/gym-leader';
 import { LeaderCard } from '../../components/leader-card/leader-card';
@@ -26,12 +26,41 @@ export class LeaderList implements OnInit {
     return this.leaders().filter((l) => l.region === region);
   });
 
+  // carousel
+  track = viewChild<ElementRef<HTMLDivElement>>('track');
+  atStart = signal(true);
+  atEnd = signal(true);
+
+  // re-check the arrows whenever the list changes
+  private syncArrows = effect(() => {
+    this.filteredLeaders();
+    setTimeout(() => this.updateArrows());
+  });
+
   ngOnInit(): void {
     this.leaderService.fetchLeaders();
   }
 
   selectRegion(region: string): void {
     this.selectedRegion.set(region);
+    this.track()?.nativeElement.scrollTo({ left: 0 });
+  }
+
+  scroll(direction: number): void {
+    const el = this.track()?.nativeElement;
+    if (!el) {
+      return;
+    }
+    el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' });
+  }
+
+  updateArrows(): void {
+    const el = this.track()?.nativeElement;
+    if (!el) {
+      return;
+    }
+    this.atStart.set(el.scrollLeft <= 4);
+    this.atEnd.set(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
   }
 
   onEdit(id: string): void {

@@ -1,4 +1,5 @@
 <section class="form-page">
+  <p class="kicker">{{ isEditMode() ? 'Update Record' : 'New Record' }}</p>
   <h1>{{ isEditMode() ? 'Edit Gym Leader' : 'Register a Gym Leader' }}</h1>
 
   @if (isLoading()) {
@@ -14,41 +15,45 @@
       }
     </div>
 
-    <div class="field">
-      <label for="region">Region</label>
-      <select id="region" formControlName="region">
-        <option value="" disabled>Select a region</option>
-        @for (region of regions; track region) {
-          <option [value]="region">{{ region }}</option>
+    <div class="row">
+      <div class="field">
+        <label for="region">Region</label>
+        <select id="region" formControlName="region">
+          <option value="" disabled>Select a region</option>
+          @for (region of regions; track region) {
+            <option [value]="region">{{ region }}</option>
+          }
+        </select>
+        @if (form.controls.region.touched && form.controls.region.invalid) {
+          <small class="error">Region is required.</small>
         }
-      </select>
-      @if (form.controls.region.touched && form.controls.region.invalid) {
-        <small class="error">Region is required.</small>
-      }
+      </div>
+
+      <div class="field">
+        <label for="town">Town</label>
+        <input id="town" type="text" formControlName="town" placeholder="Pewter City" />
+        @if (form.controls.town.touched && form.controls.town.invalid) {
+          <small class="error">Town is required.</small>
+        }
+      </div>
     </div>
 
-    <div class="field">
-      <label for="town">Town</label>
-      <input id="town" type="text" formControlName="town" placeholder="Pewter City" />
-      @if (form.controls.town.touched && form.controls.town.invalid) {
-        <small class="error">Town is required.</small>
-      }
-    </div>
+    <div class="row">
+      <div class="field">
+        <label for="badge">Badge</label>
+        <input id="badge" type="text" formControlName="badge" placeholder="Boulder Badge" />
+        @if (form.controls.badge.touched && form.controls.badge.invalid) {
+          <small class="error">Badge is required.</small>
+        }
+      </div>
 
-    <div class="field">
-      <label for="badge">Badge</label>
-      <input id="badge" type="text" formControlName="badge" placeholder="Boulder Badge" />
-      @if (form.controls.badge.touched && form.controls.badge.invalid) {
-        <small class="error">Badge is required.</small>
-      }
-    </div>
-
-    <div class="field">
-      <label for="specialty">Specialty</label>
-      <input id="specialty" type="text" formControlName="specialty" placeholder="Rock" />
-      @if (form.controls.specialty.touched && form.controls.specialty.invalid) {
-        <small class="error">Specialty is required.</small>
-      }
+      <div class="field">
+        <label for="specialty">Specialty</label>
+        <input id="specialty" type="text" formControlName="specialty" placeholder="Rock" />
+        @if (form.controls.specialty.touched && form.controls.specialty.invalid) {
+          <small class="error">Specialty is required.</small>
+        }
+      </div>
     </div>
 
     <div class="field">
@@ -61,7 +66,7 @@
 
     <div class="field">
       <label for="motto">Motto (optional)</label>
-      <textarea id="motto" formControlName="motto" rows="3" placeholder="My rock-hard willpower..."></textarea>
+      <textarea id="motto" formControlName="motto" rows="3" placeholder="My rock-hard willpower is evident even in my Pokemon."></textarea>
       @if (form.controls.motto.touched && form.controls.motto.invalid) {
         <small class="error">Motto must be at most 150 characters.</small>
       }

@@ -1,40 +1,110 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 14px 24px;
-  background: #cc0000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: block;
 }
 
-.brand {
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: 700;
-  text-decoration: none;
+/* top notice bar */
+.notice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.notice span {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* main bar */
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
 
 .links {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 22px;
 }
 
 .links a {
-  color: #fff;
+  color: var(--muted);
   text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-weight: 500;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  transition: color 0.2s ease;
 }
 
 .links a:hover {
-  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
 .links a.active {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.wordmark {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-align: center;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.register {
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease;
+}
+
+.register:hover,
+.register.active {
   background: #fff;
-  color: #cc0000;
+  color: #000;
+  border-color: #fff;
+}
+
+/* phone */
+@media (max-width: 700px) {
+  .bar {
+    grid-template-columns: 1fr auto;
+    padding: 12px 16px;
+  }
+
+  .wordmark {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+  }
+
+  .links {
+    gap: 16px;
+  }
 }

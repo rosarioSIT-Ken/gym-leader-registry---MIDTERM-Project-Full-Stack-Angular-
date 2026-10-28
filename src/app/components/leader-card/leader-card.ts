@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { GymLeader } from '../../models/gym-leader.model';
 
 @Component({
@@ -11,6 +11,22 @@ export class LeaderCard {
   leader = input.required<GymLeader>();
   edit = output<string>();
   remove = output<string>();
+
+  // true when the leader's image file is missing
+  imageFailed = signal(false);
+
+  // image path from the name, e.g. "Brock" -> /images/leaders/brock.jpg
+  imagePath = computed(() => {
+    const fileName = this.leader().name.trim().toLowerCase().replace(/\s+/g, '-');
+    return `/images/leaders/${fileName}.jpg`;
+  });
+
+  // first letter shown when there is no image
+  initial = computed(() => this.leader().name.charAt(0).toUpperCase());
+
+  onImageError(): void {
+    this.imageFailed.set(true);
+  }
 
   onEdit(): void {
     this.edit.emit(this.leader()._id ?? '');

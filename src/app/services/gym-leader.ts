@@ -13,34 +13,34 @@ export class GymLeaderService {
   // all leaders from the API
   leaders = signal<GymLeader[]>([]);
 
-  // counts per region
+  // number of leaders per region
   kantoCount = computed(() => this.leaders().filter((l) => l.region === 'Kanto').length);
   johtoCount = computed(() => this.leaders().filter((l) => l.region === 'Johto').length);
   hoennCount = computed(() => this.leaders().filter((l) => l.region === 'Hoenn').length);
 
-  // GET all
+  // GET all leaders and set the signal
   fetchLeaders(): void {
     this.http.get<GymLeader[]>(this.apiUrl).subscribe((data) => {
       this.leaders.set(data);
     });
   }
 
-  // GET one
+  // GET one leader
   getLeader(id: string): Observable<GymLeader> {
     return this.http.get<GymLeader>(`${this.apiUrl}/${id}`);
   }
 
-  // POST
+  // POST a new leader
   addLeader(leader: GymLeader): Observable<GymLeader> {
     return this.http.post<GymLeader>(this.apiUrl, leader);
   }
 
-  // PUT
+  // PUT an updated leader
   updateLeader(id: string, leader: GymLeader): Observable<GymLeader> {
     return this.http.put<GymLeader>(`${this.apiUrl}/${id}`, leader);
   }
 
-  // DELETE
+  // DELETE a leader
   deleteLeader(id: string): Observable<{ message: string }> {
     return this.http.delete<{ message: string }>(`${this.apiUrl}/${id}`);
   }

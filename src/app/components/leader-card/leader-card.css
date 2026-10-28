@@ -1,109 +1,197 @@
 :host {
   display: block;
+  height: 100%;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.panel {
+  --accent: var(--muted);
+  position: relative;
   height: 100%;
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  border-top: 6px solid #999;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--panel);
+  overflow: hidden;
+  border-top: 3px solid var(--accent);
 }
 
 /* region colors */
-.card.kanto {
-  border-top-color: #e3350d;
+.panel.kanto {
+  --accent: var(--kanto);
 }
 
-.card.johto {
-  border-top-color: #d4a017;
+.panel.johto {
+  --accent: var(--johto);
 }
 
-.card.hoenn {
-  border-top-color: #1e88e5;
+.panel.hoenn {
+  --accent: var(--hoenn);
 }
 
-.card-header {
+/* image area */
+.art {
+  position: absolute;
+  inset: 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
 }
 
-.card-header h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  color: #222;
+.art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) brightness(0.8) contrast(1.1);
+  transition: filter 0.6s ease, transform 0.8s ease;
 }
 
-.region-tag {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: #999;
+.panel:hover .art img {
+  filter: grayscale(0%) brightness(0.9);
+  transform: scale(1.04);
 }
 
-.kanto .region-tag {
-  background: #e3350d;
-}
-
-.johto .region-tag {
-  background: #d4a017;
-}
-
-.hoenn .region-tag {
-  background: #1e88e5;
-}
-
-.details {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.placeholder {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  color: #444;
-  font-size: 0.95rem;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 120px;
+}
+
+.ph-letter {
+  font-size: 7rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.35;
+}
+
+.ph-note {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #4a4a4a;
+}
+
+/* top labels */
+.tag,
+.level {
+  position: absolute;
+  top: 18px;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+
+.tag {
+  left: 18px;
+  color: #fff;
+  background: var(--accent);
+}
+
+.level {
+  right: 18px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* bottom text */
+.overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 60px 22px 22px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0) 100%);
+}
+
+.meta {
+  min-width: 0;
+}
+
+.meta h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.sub {
+  margin: 8px 0 0;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.badge {
+  margin: 6px 0 0;
+  font-size: 0.8rem;
+  color: var(--accent);
 }
 
 .motto {
-  margin: 0;
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.55;
   font-style: italic;
-  color: #666;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.card-actions {
+/* buttons */
+.actions {
   display: flex;
+  flex-direction: column;
   gap: 8px;
-  margin-top: auto;
+  flex-shrink: 0;
 }
 
-.card-actions button {
-  flex: 1;
-  padding: 8px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
+.actions button {
+  padding: 9px 18px;
+  border-radius: 22px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
   cursor: pointer;
-}
-
-.card-actions button:hover {
-  opacity: 0.85;
+  white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
 .edit-btn {
-  background: #2b2d42;
-  color: #fff;
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+.edit-btn:hover {
+  opacity: 0.8;
 }
 
 .remove-btn {
-  background: #fdecea;
-  color: #c62828;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.remove-btn:hover {
+  background: #c62828;
+  border-color: #c62828;
+}
+
+@media (max-width: 700px) {
+  .overlay {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    flex-direction: row;
+  }
 }

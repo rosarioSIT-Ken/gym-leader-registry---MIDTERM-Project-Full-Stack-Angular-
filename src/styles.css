@@ -1,11 +1,42 @@
-/* global styles */
+/* global theme: dark editorial */
+:root {
+  --ink: #ffffff;
+  --paper: #0a0a0a;
+  --panel: #141414;
+  --line: #262626;
+  --muted: #8f8f8f;
+
+  /* region accents */
+  --kanto: #e3350d;
+  --johto: #d4a017;
+  --hoenn: #2f8ff0;
+
+  --mono: 'DM Mono', 'Courier New', monospace;
+  --sans: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-  background: #f4f5f7;
-  color: #222;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+::selection {
+  background: #fff;
+  color: #000;
 }

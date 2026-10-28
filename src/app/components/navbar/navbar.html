@@ -1,9 +1,16 @@
-<nav class="navbar">
-  <a routerLink="/home" class="brand">Gym Leader Registry</a>
+<div class="notice">
+  <span>Official records of the Pokemon League Office</span>
+</div>
 
+<nav class="bar">
   <div class="links">
     <a routerLink="/home" routerLinkActive="active">Home</a>
     <a routerLink="/leaders" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Leaders</a>
-    <a routerLink="/leaders/new" routerLinkActive="active">Add Leader</a>
+  </div>
+
+  <a routerLink="/home" class="wordmark">GYM LEADER REGISTRY</a>
+
+  <div class="right">
+    <a routerLink="/leaders/new" routerLinkActive="active" class="register">+ Add Leader</a>
   </div>
 </nav>
