@@ -1,1 +1,22 @@
-<p>leader-list works!</p>
+<section class="page">
+  <div class="page-header">
+    <h1>Gym Leaders</h1>
+    <a routerLink="/leaders/new" class="add-btn">+ Add Leader</a>
+  </div>
+
+  <div class="filters">
+    @for (region of regions; track region) {
+      <button type="button" [class.active]="selectedRegion() === region" (click)="selectRegion(region)">
+        {{ region }}
+      </button>
+    }
+  </div>
+
+  <div class="grid">
+    @for (leader of filteredLeaders(); track leader._id) {
+      <app-leader-card [leader]="leader" (edit)="onEdit($event)" (remove)="onRemove($event)" />
+    } @empty {
+      <p class="empty">No Gym Leaders registered yet.</p>
+    }
+  </div>
+</section>

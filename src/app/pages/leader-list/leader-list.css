@@ -1,0 +1,64 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin: 0;
+  color: #222;
+}
+
+.add-btn {
+  background: #cc0000;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.add-btn:hover {
+  opacity: 0.9;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filters button {
+  padding: 8px 16px;
+  border: 2px solid #cc0000;
+  background: #fff;
+  color: #cc0000;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filters button.active {
+  background: #cc0000;
+  color: #fff;
+}
+
+/* card layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #666;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+}

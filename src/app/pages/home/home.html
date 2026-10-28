@@ -1,1 +1,21 @@
-<p>home works!</p>
+<section class="home">
+  <h1>Welcome to the Gym Leader Registry</h1>
+  <p class="subtitle">Official records of every Gym Leader in the Kanto, Johto, and Hoenn regions.</p>
+
+  <div class="stats">
+    <div class="stat kanto">
+      <span class="count">{{ kantoCount() }}</span>
+      <span class="label">Kanto Leaders</span>
+    </div>
+    <div class="stat johto">
+      <span class="count">{{ johtoCount() }}</span>
+      <span class="label">Johto Leaders</span>
+    </div>
+    <div class="stat hoenn">
+      <span class="count">{{ hoennCount() }}</span>
+      <span class="label">Hoenn Leaders</span>
+    </div>
+  </div>
+
+  <a routerLink="/leaders" class="btn">View All Leaders</a>
+</section>

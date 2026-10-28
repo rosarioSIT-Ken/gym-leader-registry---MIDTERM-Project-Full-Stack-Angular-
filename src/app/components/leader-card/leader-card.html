@@ -1,1 +1,27 @@
-<p>leader-card works!</p>
+<article
+  class="card"
+  [class.kanto]="leader().region === 'Kanto'"
+  [class.johto]="leader().region === 'Johto'"
+  [class.hoenn]="leader().region === 'Hoenn'"
+>
+  <div class="card-header">
+    <h2>{{ leader().name }}</h2>
+    <span class="region-tag">{{ leader().region }}</span>
+  </div>
+
+  <ul class="details">
+    <li><strong>Town:</strong> {{ leader().town }}</li>
+    <li><strong>Badge:</strong> {{ leader().badge }}</li>
+    <li><strong>Specialty:</strong> {{ leader().specialty }}</li>
+    <li><strong>Ace Level:</strong> {{ leader().aceLevel }}</li>
+  </ul>
+
+  @if (leader().motto) {
+    <p class="motto">"{{ leader().motto }}"</p>
+  }
+
+  <div class="card-actions">
+    <button type="button" class="edit-btn" (click)="onEdit()">Edit</button>
+    <button type="button" class="remove-btn" (click)="onRemove()">Remove</button>
+  </div>
+</article>

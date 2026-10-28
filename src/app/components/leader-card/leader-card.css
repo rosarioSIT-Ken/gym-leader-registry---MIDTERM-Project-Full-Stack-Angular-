@@ -1,0 +1,109 @@
+:host {
+  display: block;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border-top: 6px solid #999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* region colors */
+.card.kanto {
+  border-top-color: #e3350d;
+}
+
+.card.johto {
+  border-top-color: #d4a017;
+}
+
+.card.hoenn {
+  border-top-color: #1e88e5;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.region-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #999;
+}
+
+.kanto .region-tag {
+  background: #e3350d;
+}
+
+.johto .region-tag {
+  background: #d4a017;
+}
+
+.hoenn .region-tag {
+  background: #1e88e5;
+}
+
+.details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.motto {
+  margin: 0;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.card-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.card-actions button:hover {
+  opacity: 0.85;
+}
+
+.edit-btn {
+  background: #2b2d42;
+  color: #fff;
+}
+
+.remove-btn {
+  background: #fdecea;
+  color: #c62828;
+}

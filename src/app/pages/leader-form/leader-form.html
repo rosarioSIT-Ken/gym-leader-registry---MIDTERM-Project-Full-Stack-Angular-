@@ -1,1 +1,81 @@
-<p>leader-form works!</p>
+<section class="form-page">
+  <h1>{{ isEditMode() ? 'Edit Gym Leader' : 'Register a Gym Leader' }}</h1>
+
+  @if (isLoading()) {
+    <p class="loading">Loading leader...</p>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" placeholder="Brock" />
+      @if (form.controls.name.touched && form.controls.name.invalid) {
+        <small class="error">Name is required and must be at least 2 characters.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="region">Region</label>
+      <select id="region" formControlName="region">
+        <option value="" disabled>Select a region</option>
+        @for (region of regions; track region) {
+          <option [value]="region">{{ region }}</option>
+        }
+      </select>
+      @if (form.controls.region.touched && form.controls.region.invalid) {
+        <small class="error">Region is required.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="town">Town</label>
+      <input id="town" type="text" formControlName="town" placeholder="Pewter City" />
+      @if (form.controls.town.touched && form.controls.town.invalid) {
+        <small class="error">Town is required.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="badge">Badge</label>
+      <input id="badge" type="text" formControlName="badge" placeholder="Boulder Badge" />
+      @if (form.controls.badge.touched && form.controls.badge.invalid) {
+        <small class="error">Badge is required.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="specialty">Specialty</label>
+      <input id="specialty" type="text" formControlName="specialty" placeholder="Rock" />
+      @if (form.controls.specialty.touched && form.controls.specialty.invalid) {
+        <small class="error">Specialty is required.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="aceLevel">Ace Level</label>
+      <input id="aceLevel" type="number" formControlName="aceLevel" min="1" max="100" />
+      @if (form.controls.aceLevel.touched && form.controls.aceLevel.invalid) {
+        <small class="error">Ace level must be a whole number between 1 and 100.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="motto">Motto (optional)</label>
+      <textarea id="motto" formControlName="motto" rows="3" placeholder="My rock-hard willpower..."></textarea>
+      @if (form.controls.motto.touched && form.controls.motto.invalid) {
+        <small class="error">Motto must be at most 150 characters.</small>
+      }
+    </div>
+
+    @if (errorMessage()) {
+      <p class="error server-error">{{ errorMessage() }}</p>
+    }
+
+    <div class="actions">
+      <button type="submit" class="submit-btn" [disabled]="form.invalid">
+        {{ isEditMode() ? 'Save Changes' : 'Add Leader' }}
+      </button>
+      <button type="button" class="cancel-btn" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</section>

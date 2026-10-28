@@ -1,9 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { GymLeader } from '../../models/gym-leader.model';
 
 @Component({
-  imports: [],
   selector: 'app-leader-card',
-  styleUrl: './leader-card.css',
+  imports: [],
   templateUrl: './leader-card.html',
+  styleUrl: './leader-card.css'
 })
-export class LeaderCard {}
+export class LeaderCard {
+  leader = input.required<GymLeader>();
+  edit = output<string>();
+  remove = output<string>();
+
+  onEdit(): void {
+    this.edit.emit(this.leader()._id ?? '');
+  }
+
+  onRemove(): void {
+    this.remove.emit(this.leader()._id ?? '');
+  }
+}
